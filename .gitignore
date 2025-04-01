@@ -128,3 +128,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Ignorar sesiones
+.wwebjs_cache
+.wwebjs_auth 
