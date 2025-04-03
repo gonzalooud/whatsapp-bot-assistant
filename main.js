@@ -5,6 +5,9 @@ const handleDolarCommand = require('./Commands/dolar.js');
 const handleHelpCommand = require('./Commands/help.js');
 const handleJuntadaCommand = require('./Commands/juntada.js');
 const handlePutoCommand = require('./Commands/puto.js');
+const handleUnirmeCommand = require('./Commands/unirme.js');
+const handleNotificarRolCommand = require('./Commands/notificarRol.js');
+const { quiereNotificarRol } = require('./Services/roles.js');
 
 const client = new Client({
     authStrategy: new LocalAuth()
@@ -38,6 +41,12 @@ client.on('message', async (msg) => {
             case '!puto':
                 handlePutoCommand(msg, client);
                 break;
+        }
+
+        if (msg.body.startsWith('!unirme')) {
+            await handleUnirmeCommand(msg, client);
+        } else if (await quiereNotificarRol(msg.body)) {
+            await handleNotificarRolCommand(rol, msg);
         }
     } catch (error) {
         console.error(`Error al procesar el comando "${msg.body}":`, error);
