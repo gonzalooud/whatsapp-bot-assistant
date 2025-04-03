@@ -132,3 +132,6 @@ dist
 # Ignorar sesiones
 .wwebjs_cache
 .wwebjs_auth 
+
+# Ignorar archivos de configuración
+.env
